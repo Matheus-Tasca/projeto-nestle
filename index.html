@@ -141,6 +141,22 @@ h1 { font-size: clamp(1.9rem, 5vw, 2.7rem); font-weight: 700; letter-spacing: -0
 .verdict .answer { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; }
 .proofs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .proofs span { background: var(--accent-soft); padding: 0.3rem 0.7rem; border-radius: 4px; font-size: 0.95rem; }
+
+/* Sugestão da IA */
+.tag.ai { background: var(--accent-soft); color: var(--accent); }
+.jump { align-self: flex-start; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.suggestion .note { color: var(--muted); font-size: 0.98rem; }
+.ph { background: var(--warn-soft); color: var(--warn); padding: 0.05rem 0.35rem; border-radius: 3px; font-size: 0.92em; }
+.answer { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; min-width: 0; }
+.answer > summary { display: flex; align-items: baseline; gap: 0.7rem; padding: 0.9rem 1.2rem; cursor: pointer; list-style: none; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+.answer > summary::-webkit-details-marker { display: none; }
+.answer > summary::before { content: "\25B8"; color: var(--muted); font-size: 0.9rem; flex: none; }
+.answer[open] > summary::before { transform: rotate(90deg); }
+.answer .qn { font-family: var(--font-mono); font-weight: 500; font-size: 0.85rem; color: var(--muted); flex: none; }
+.answer-body { padding: 0 1.2rem 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+.answer-body .qtext { color: var(--muted); font-style: italic; font-size: 0.97rem; }
+.answer-body ul, .answer-body ol { margin: 0; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.answer-body li::marker { color: var(--muted); }
 </style>
 
 <div class="page">
@@ -150,6 +166,7 @@ h1 { font-size: clamp(1.9rem, 5vw, 2.7rem); font-weight: 700; letter-spacing: -0
   <h1>Revisão do Pitch Café Gelado</h1>
   <p class="lede">Problemas encontrados na proposta de café gelado enlatado para a Geração Z, ordenados por prioridade, com a correção sugerida para cada um.</p>
   <div class="deadline"><span>Prazo vigente</span> <b>16/10, às 18h</b></div>
+  <a class="jump" href="#sugestao">Ir para a sugestão da IA</a>
 </header>
 
 <section class="summary" aria-label="Notas da revisão">
@@ -363,6 +380,178 @@ h1 { font-size: clamp(1.9rem, 5vw, 2.7rem); font-weight: 700; letter-spacing: -0
     <span>O preço cabe na conta</span>
     <span>A embalagem é viável</span>
   </div>
+</section>
+
+<section class="group suggestion" id="sugestao" aria-labelledby="g-sug">
+  <div class="group-head">
+    <span class="tag ai">Sugestão da IA</span>
+    <h2 id="g-sug">Respostas reescritas (v2)</h2>
+    <span class="count">8 questões</span>
+  </div>
+  <p class="note">Nova versão das respostas, corrigindo os problemas acima. Os trechos <span class="ph">[em destaque]</span> pedem dados reais da equipe antes do envio.</p>
+
+  <details class="answer" open>
+    <summary><span class="qn">Q1</span>O problema</summary>
+    <div class="answer-body">
+      <p class="qtext">Qual problema ou oportunidade sua equipe identificou em relação ao consumo (ou não consumo) de café gelado pela Geração Z?</p>
+      <p>Fizemos um questionário com 56 jovens da Geração Z. Entre eles, 55% bebem café todos os dias e 81% bebem de manhã, associando a bebida à “disposição para começar o dia”. Quando perguntamos que imagem vem à mente ao pensar em café, a grande maioria descreveu uma xícara quente, com fumaça, sobre a mesa de casa. Nossa amostra é pequena, então tratamos esses números como um indício e não como prova.</p>
+      <p>O problema que enxergamos: para esse público, café é um ritual quente, matinal e de função, que serve para dar energia. A pausa da tarde, que pede algo gelado, rápido e prazeroso, não tem o café como opção óbvia. Quem ocupa esse espaço são os energéticos gelados. Como mostrou o webinar 3, o café gelado não compete com o café quente, e sim com outros momentos de pausa.</p>
+      <p>A oportunidade está nesse horário vazio. Levantamos três hipóteses para explicar por que o café gelado ainda não entrou nele, e vamos confirmá-las em entrevistas até o Pitch Day:</p>
+      <ul>
+        <li>o café gelado pronto custa mais do que o energético que o jovem já compra;</li>
+        <li>o café gelado soa como algo “de fora”, associado a culturas estrangeiras;</li>
+        <li>as embalagens atuais não conversam com o que a Geração Z gosta de mostrar.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="answer" open>
+    <summary><span class="qn">Q2</span>A pessoa que queremos conquistar</summary>
+    <div class="answer-body">
+      <p class="qtext">Descreva a pessoa que hoje não consome café gelado e que sua ideia quer conquistar. O que ela consome hoje no lugar? Por que ela ainda não entrou nesse hábito?</p>
+      <p>Nossa pessoa é a Gabriela, 24 anos, universitária e estagiária em um escritório. Ela tem uma rotina cansativa e, depois do almoço ou no meio da tarde, quer algo gelado que dê energia. Hoje ela escolhe um energético em lata, porque já conhece, custa pouco e tem sabor doce.</p>
+      <p>Ela ainda não escolhe café gelado por três razões:</p>
+      <ul>
+        <li>Para ela, café é amargo e quente, como o café da empresa, de que não gosta. O café gelado parece “errado”.</li>
+        <li>O café gelado de cafeteria custa igual ou mais que o energético. Para quem está na faculdade ou começando a carreira, isso não parece uma aposta segura. É o Efeito Ctrl+Z: ela quer gastar certo.</li>
+        <li>Na geladeira do mercadinho, nada em um café gelado chama a atenção dela como a lata do energético.</li>
+      </ul>
+      <p>Por isso queremos conquistá-la com uma bebida gelada, de sabor suave o bastante para quem acha café amargo, com preço no nível do energético e uma opção sem adição de açúcar para quem já cuida da dieta. Em vez de uma bebida de função, damos a ela uma pausa com gosto de cafeteria, que ela pode mostrar para os amigos.</p>
+    </div>
+  </details>
+
+  <details class="answer" open>
+    <summary><span class="qn">Q3</span>Por que isso viraria cultura</summary>
+    <div class="answer-body">
+      <p class="qtext">Por que isso viraria cultura? O que na sua ideia gera conversa, pertencimento ou um novo código cultural?</p>
+      <p>Porque transformamos a pausa da tarde em um ritual com nome: a <strong>Cor do Dia</strong>. Pelo framework PULSO:</p>
+      <ul>
+        <li><strong>Problema humano:</strong> a pausa da tarde é cansativa e hoje só o energético responde a ela.</li>
+        <li><strong>Unidade de desejo:</strong> a lata colorida. Cada sabor tem uma cor, e a lata é um objeto que a pessoa quer ter na mão, na mesa e na mochila, como acontece com o Stanley e o Crocs.</li>
+        <li><strong>Loop de ritual:</strong> na pausa, a pessoa escolhe a lata e responde “Qual a cor do seu dia?” marcando uma área fosca do rótulo com caneta. Depois fotografa e posta. No dia seguinte, a cor pode ser outra, e esse é o motivo para repetir.</li>
+        <li><strong>Símbolo social:</strong> a cor mostra como a pessoa está, uma forma de expressão que conversa com o pilar Eu da Geração Z.</li>
+        <li><strong>Onda coletiva:</strong> amigos respondem com as próprias cores, em uma hashtag própria <span class="ph">[definir, por exemplo #CorDoDia]</span>, e um QR code no rótulo leva a um mural com as cores do dia de outras pessoas. Vamos testar esse mural no piloto.</li>
+      </ul>
+      <p>O prazer da pausa atende ao pilar Dopamina High, e o preço no nível do energético atende ao Efeito Ctrl+Z.</p>
+      <p>Embalagens que viram conteúdo têm precedente, como a campanha Share a Coke, em que as pessoas fotografavam garrafas com seus nomes. A diferença aqui é que a interação é diária e ligada a um momento específico: a pausa do trabalho ou dos estudos, em que a pessoa quer um café de qualidade sem fila e sem preparo.</p>
+    </div>
+  </details>
+
+  <details class="answer" open>
+    <summary><span class="qn">Q4</span>A ideia em detalhe</summary>
+    <div class="answer-body">
+      <p class="qtext">Descreva sua ideia em detalhe: o que é, como funciona e o que a equipe está propondo criar.</p>
+      <p><strong>Frase âncora:</strong> para jovens de 18 a 29 anos que hoje escolhem energéticos na pausa da tarde, criamos o Nescafé Pausa Gelada (nome provisório), um café com leite gelado em lata, com preço no nível dos energéticos, que transforma a pausa em um momento de expressão: a Cor do Dia.</p>
+      <p><strong>Subtema escolhido:</strong> Produto e Embalagem, com Acesso e Ativação como apoio.</p>
+      <p>É uma linha de café com leite gelado em lata de alumínio de 350 ml, vendida em pontos de decisão rápida. A estratégia tem três pilares:</p>
+      <ul>
+        <li><strong>Apresentação.</strong> Lata colorida, com uma cor para cada sabor, a pergunta “Qual a cor do seu dia?” no rótulo, uma área fosca para marcar com caneta e um QR code. Nossa ideia inicial era uma lata de plástico transparente. Trocamos por alumínio porque o café com leite é bege, então o líquido visível não seria um bom atrativo, porque o alumínio protege melhor a bebida com leite da luz e porque é reciclável, algo que a Geração Z valoriza. A viabilidade (validade, custo e área fosca) será confirmada com a área técnica da Nestlé.</li>
+        <li><strong>Acessibilidade.</strong> O preço-alvo é, no máximo, o do energético de lata de referência no mesmo ponto de venda <span class="ph">[inserir o preço pesquisado]</span>. Para quem está na faculdade ou começando a carreira, esse é o limite da aposta.</li>
+        <li><strong>Apelo cultural.</strong> Comunicação orgânica com micro-influenciadores universitários no TikTok e no Instagram, que mostrem a Cor do Dia como parte da rotina, sem tom de anúncio.</li>
+      </ul>
+      <p>A linha começa com três produtos:</p>
+      <ul>
+        <li><strong>Café com Leite:</strong> o principal, doce e suave, para quem acha café amargo.</li>
+        <li><strong>Café com Leite Sem Adição de Açúcar:</strong> para quem controla o açúcar e quer uma pausa mais leve.</li>
+        <li><strong>Café com Leite Proteico (15 g de proteína):</strong> para o público fitness e para quem busca saciedade rápida e prática.</li>
+      </ul>
+      <p>Onde encontrar: padarias, lojas de conveniência, mercadinhos express, máquinas de bebidas e cafeterias de prédios comerciais, com prioridade para pontos perto de campus e escritórios.</p>
+    </div>
+  </details>
+
+  <details class="answer" open>
+    <summary><span class="qn">Q5</span>O que nos diferencia</summary>
+    <div class="answer-body">
+      <p class="qtext">O que torna sua proposta diferente do que já existe no mercado hoje?</p>
+      <p>Hoje, o jovem tem três alternativas para a pausa da tarde:</p>
+      <ul>
+        <li><strong>Energéticos gelados em lata:</strong> baratos, gelados e rápidos, mas sem sabor de café e sem nada de aconchegante.</li>
+        <li><strong>Cafés gelados de cafeteria:</strong> têm o sabor, mas custam mais e exigem fila e espera.</li>
+        <li><strong>Cafés gelados prontos no varejo:</strong> <span class="ph">[listar 2 ou 3 concorrentes encontrados na pesquisa de prateleira, com preço, e dizer em uma frase o que eles não oferecem]</span>.</li>
+      </ul>
+      <p>Nossa proposta junta o que há de melhor em cada uma: o sabor de café com leite de cafeteria, a praticidade e o preço de uma lata de energético, e um ritual, a Cor do Dia, que dá à pessoa um motivo para mostrar e para repetir. Até onde pesquisamos, nenhuma das alternativas combina essas três coisas <span class="ph">[confirmar depois da pesquisa de prateleira]</span>.</p>
+      <p>Além disso, a linha tem três perfis (tradicional, sem adição de açúcar e proteico), o que permite atender públicos diferentes da Geração Z com a mesma identidade visual.</p>
+    </div>
+  </details>
+
+  <details class="answer" open>
+    <summary><span class="qn">Q6</span>Um momento real de uso</summary>
+    <div class="answer-body">
+      <p class="qtext">Descreva um momento real de uso: onde, quando e como a pessoa teria contato com sua solução pela primeira vez.</p>
+      <p><strong>Antes.</strong> Gabriela, 24 anos, trabalha como estagiária e teve uma manhã cansativa. Depois do almoço, faz calor e ela quer algo gelado que dê energia. Ela não gosta do café da empresa, porque é amargo e quente. Na fila do mercadinho, com pouco tempo e gente atrás, pega o energético de sempre.</p>
+      <p><strong>Depois.</strong> No mesmo mercadinho, há uma geladeira da Nescafé com latas coloridas, uma cor para cada sabor. A cor chama a atenção dela e ela lê no rótulo “Qual a cor do seu dia?”. O preço é parecido com o do energético, então a decisão é rápida. Como se preocupa com a dieta, escolhe o café com leite sem adição de açúcar. Ela gosta do sabor e, de volta ao estágio, marca com uma caneta rosa a cor do seu dia na área fosca, fotografa e posta nos stories. Duas colegas respondem com as próprias cores. Na tarde seguinte, Gabriela volta ao mercadinho para pegar outra lata.</p>
+      <p><strong>Resultado.</strong> Ela teve energia para terminar o expediente, descobriu um jeito de gostar de café e criou um momento de conversa com os amigos.</p>
+    </div>
+  </details>
+
+  <details class="answer" open>
+    <summary><span class="qn">Q7</span>Como colocar em prática</summary>
+    <div class="answer-body">
+      <p class="qtext">Como vocês imaginam colocar essa ideia em prática? Que recursos ou passos seriam necessários?</p>
+      <p>Propomos quatro fases, com prazos de referência contados a partir da aprovação:</p>
+      <ol>
+        <li><strong>Semanas 1 a 4 · Validar.</strong> Entrevistas profundas com <span class="ph">[número]</span> jovens de 18 a 29 anos sobre o comportamento real na pausa da tarde. Teste de sabor dos três perfis, teste de interesse na embalagem e no QR code, e checagem de viabilidade e custo da lata de alumínio com área fosca junto à área técnica.</li>
+        <li><strong>Semanas 5 a 8 · Preparar.</strong> Fechar a fórmula, o design da lata (cores por sabor, rótulo e QR code), o preço-alvo e os conteúdos com micro-influenciadores universitários.</li>
+        <li><strong>Semanas 9 a 16 · Piloto.</strong> Vender em <span class="ph">[número]</span> pontos de decisão rápida perto de campus e escritórios, por 8 semanas. A linha comum fica junto das outras bebidas geladas, e a proteica ao lado do nicho fitness.</li>
+        <li><strong>Depois do piloto · Escalar.</strong> Se os indicadores forem atingidos, ampliar a distribuição e instalar geladeiras exclusivas da linha nos pontos de maior giro.</li>
+      </ol>
+      <p>Indicadores do piloto:</p>
+      <ul>
+        <li><strong>Recompra:</strong> parcela de quem compra e volta em até 2 semanas <span class="ph">[definir meta]</span>.</li>
+        <li><strong>Participação no ritual:</strong> QR codes lidos e posts com a hashtag <span class="ph">[definir meta]</span>.</li>
+        <li><strong>Vendas:</strong> unidades por ponto por semana, comparadas às do energético de referência <span class="ph">[definir meta]</span>.</li>
+        <li><strong>Preço percebido:</strong> o que os compradores dizem sobre o valor nas entrevistas de saída.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="answer" open>
+    <summary><span class="qn">Q8</span>O maior desafio</summary>
+    <div class="answer-body">
+      <p class="qtext">Qual é o maior desafio para tornar isso real, e como vocês pensariam em resolvê-lo?</p>
+      <p>O maior desafio é provar duas coisas ao mesmo tempo: que a Cor do Dia vira hábito e que a conta fecha. Se a lata de alumínio com área fosca custar caro demais, o produto não cabe no preço do energético. Se o ritual não se repetir, vira só uma lata bonita comprada uma vez.</p>
+      <p>Os riscos e como respondemos a cada um:</p>
+      <ul>
+        <li><strong>Custo e validade da embalagem.</strong> Resolver já na fase 1, com a área técnica, começando com um único formato (350 ml). Se a área fosca encarecer demais, mantemos só a pergunta impressa e o QR code, e o ritual segue no digital.</li>
+        <li><strong>Entrada nos pontos de venda.</strong> Começar por pontos pequenos e flexíveis (conveniência, mercadinhos express e cafeterias de prédios), com poucos pedidos, e usar os resultados do piloto para ampliar.</li>
+        <li><strong>Mudar a imagem do café como bebida matinal e séria.</strong> Campanhas leves, com humor e respeito à cultura da Geração Z, feitas com micro-influenciadores de campus que mostrem a lata como parte da pausa, sem tom de anúncio.</li>
+      </ul>
+      <p>Critério de decisão: se, depois do piloto, a recompra e as vendas por ponto ficarem abaixo da meta, ajustamos preço, sabor ou ritual antes de ampliar a distribuição.</p>
+    </div>
+  </details>
+
+  <details class="answer" open>
+    <summary>O que mudou em relação à versão 1</summary>
+    <div class="answer-body">
+      <ul>
+        <li>Uma única persona, a Gabriela, da Q2 à Q6, como consumidora de energético.</li>
+        <li>Subtema declarado: Produto e Embalagem, com Acesso e Ativação como apoio.</li>
+        <li>Lata de plástico transparente trocada por alumínio, com os motivos explicados.</li>
+        <li>Ritual da Cor do Dia descrito e ligado ao PULSO e aos pilares da Geração Z.</li>
+        <li>Dados do questionário mantidos. Preço, distância cultural e embalagem viraram hipóteses a validar.</li>
+        <li>A frase “nenhuma proposta...” foi trocada por um mapa de alternativas.</li>
+        <li>Preço-alvo definido por regra: no máximo o do energético de referência.</li>
+        <li>Q7 com fases, prazos e indicadores. Q8 com os riscos reais e um piloto.</li>
+        <li>Público limitado a 18 a 29 anos, e TikTok incluído ao lado do Instagram.</li>
+        <li>Frase âncora e nome provisório (Nescafé Pausa Gelada) acrescentados.</li>
+        <li>“Industrializado” removido. O “sem açúcar” virou “sem adição de açúcar” e deixou de ser vendido como café mais forte.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="answer" open>
+    <summary>Campos a preencher antes de enviar</summary>
+    <div class="answer-body">
+      <ul>
+        <li>Preço do energético de referência (Q4).</li>
+        <li>Concorrentes de café pronto e seus preços (Q5).</li>
+        <li>Número de entrevistados e de pontos do piloto (Q7).</li>
+        <li>Metas dos indicadores (Q7).</li>
+        <li>Hashtag e nome definitivos.</li>
+        <li>Se a equipe fizer entrevistas ou testes até 16/10, incluir os resultados na Q1 e na Q4. Esta versão não afirma resultados que ainda não existem.</li>
+      </ul>
+    </div>
+  </details>
 </section>
 
 </div>
