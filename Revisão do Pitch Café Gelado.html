@@ -1,0 +1,396 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Revisão do Pitch Café Gelado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single-column report, 46rem measure. Summary and scores first, problems grouped by severity, checklist last. */
+:root {
+  --bg: #f6f8f9;
+  --surface: #ffffff;
+  --fg: #16212b;
+  --muted: #5a6875;
+  --line: #d9e0e5;
+  --accent: #1f6f8b;
+  --accent-soft: #e2f0f5;
+  --crit: #b3261e;
+  --crit-soft: #fbe9e7;
+  --warn: #8a5a00;
+  --warn-soft: #fbf1d9;
+  --note: #4d5b68;
+  --note-soft: #e9edf0;
+  --fix-bg: #e8f3ee;
+  --fix-fg: #1b5e41;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11181e;
+    --surface: #18222a;
+    --fg: #e6edf2;
+    --muted: #9aa8b4;
+    --line: #2a3742;
+    --accent: #6cc0dc;
+    --accent-soft: #17323e;
+    --crit: #ff8a80;
+    --crit-soft: #3a1f1d;
+    --warn: #f0be5c;
+    --warn-soft: #382c10;
+    --note: #aebbc6;
+    --note-soft: #222d36;
+    --fix-bg: #153227;
+    --fix-fg: #7fd6ac;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11181e;
+  --surface: #18222a;
+  --fg: #e6edf2;
+  --muted: #9aa8b4;
+  --line: #2a3742;
+  --accent: #6cc0dc;
+  --accent-soft: #17323e;
+  --crit: #ff8a80;
+  --crit-soft: #3a1f1d;
+  --warn: #f0be5c;
+  --warn-soft: #382c10;
+  --note: #aebbc6;
+  --note-soft: #222d36;
+  --fix-bg: #153227;
+  --fix-fg: #7fd6ac;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  padding-inline: 1rem;
+  padding-block: 2rem 4rem;
+}
+.page { max-width: 46rem; margin-inline: auto; display: flex; flex-direction: column; gap: 2.5rem; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Header */
+.eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+header { display: flex; flex-direction: column; gap: 0.9rem; }
+h1 { font-size: clamp(1.9rem, 5vw, 2.7rem); font-weight: 700; letter-spacing: -0.01em; }
+.lede { color: var(--muted); max-width: 40rem; }
+.deadline { align-self: flex-start; display: inline-flex; gap: 0.6rem; align-items: baseline; background: var(--accent-soft); color: var(--fg); padding: 0.45rem 0.8rem; border-radius: 4px; font-size: 0.95rem; }
+.deadline b { font-family: var(--font-mono); font-weight: 500; color: var(--accent); }
+
+/* Scores */
+.summary { display: grid; grid-template-columns: minmax(0, 12rem) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; }
+.overall { display: flex; flex-direction: column; gap: 0.2rem; }
+.overall .big { font-family: var(--font-display); font-weight: 700; font-size: 4rem; line-height: 1; letter-spacing: -0.02em; }
+.overall .big small { font-size: 1.4rem; color: var(--muted); font-weight: 500; }
+.overall .cap { color: var(--muted); font-size: 0.95rem; }
+.scores { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.scores li { display: grid; grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr) 2.4rem; gap: 0.75rem; align-items: center; font-size: 0.95rem; }
+.scores .q { color: var(--fg); }
+.scores .q span { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); margin-right: 0.4rem; }
+.track { height: 0.6rem; background: var(--note-soft); border-radius: 2px; overflow: hidden; }
+.bar { height: 100%; width: calc(var(--v) * 10%); background: var(--accent); }
+.bar.low { background: var(--warn); }
+.scores .n { font-family: var(--font-mono); font-size: 0.85rem; text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 36rem) {
+  .summary { grid-template-columns: minmax(0, 1fr); }
+  .scores li { grid-template-columns: minmax(0, 7rem) minmax(0, 1fr) 2.2rem; }
+}
+
+/* Groups */
+.group { display: flex; flex-direction: column; gap: 1rem; }
+.group-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 0.9rem; padding-bottom: 0.6rem; border-bottom: 2px solid var(--line); }
+.group-head h2 { font-size: 1.45rem; }
+.group-head .count { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+.tag { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 3px; }
+.tag.crit { background: var(--crit-soft); color: var(--crit); }
+.tag.warn { background: var(--warn-soft); color: var(--warn); }
+.tag.note { background: var(--note-soft); color: var(--note); }
+
+.issue { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.7rem; min-width: 0; }
+.issue-top { display: flex; gap: 0.8rem; align-items: baseline; }
+.issue-top .id { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); flex: none; min-width: 1.6rem; }
+.issue h3 { font-size: 1.15rem; font-weight: 700; }
+.issue .where { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); margin-left: 0.4rem; white-space: nowrap; }
+.issue ul { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.issue li::marker { color: var(--muted); }
+.fix { background: var(--fix-bg); color: var(--fix-fg); padding: 0.6rem 0.8rem; border-radius: 4px; font-size: 0.98rem; }
+.fix b { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; margin-right: 0.35rem; }
+.fix em { color: var(--fg); }
+
+/* Checklist */
+.checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.checklist li { border-top: 1px solid var(--line); }
+.checklist li:first-child { border-top: 0; }
+.checklist label { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.7rem 1rem; cursor: pointer; }
+.checklist input { margin-top: 0.3rem; width: 1.05rem; height: 1.05rem; accent-color: var(--accent); flex: none; }
+.checklist input:checked + span { color: var(--muted); text-decoration: line-through; }
+.progress { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); }
+
+/* Verdict */
+.verdict { border-left: 4px solid var(--accent); padding: 0.3rem 0 0.3rem 1.2rem; display: flex; flex-direction: column; gap: 0.7rem; }
+.verdict h2 { font-size: 1.45rem; }
+.verdict .answer { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; }
+.proofs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.proofs span { background: var(--accent-soft); padding: 0.3rem 0.7rem; border-radius: 4px; font-size: 0.95rem; }
+</style>
+
+<div class="page">
+
+<header>
+  <div class="eyebrow">Nestlé Campus Challenge · Revisão do pitch escrito</div>
+  <h1>Revisão do Pitch Café Gelado</h1>
+  <p class="lede">Problemas encontrados na proposta de café gelado enlatado para a Geração Z, ordenados por prioridade, com a correção sugerida para cada um.</p>
+  <div class="deadline"><span>Prazo vigente</span> <b>16/10, às 18h</b></div>
+</header>
+
+<section class="summary" aria-label="Notas da revisão">
+  <div class="overall">
+    <div class="eyebrow">Nota geral</div>
+    <div class="big">6,3<small>/10</small></div>
+    <div class="cap">Promissora, mas incompleta.</div>
+  </div>
+  <ul class="scores">
+    <li><span class="q"><span>Q1</span>Problema</span><div class="track"><div class="bar" style="--v:6.5"></div></div><span class="n">6,5</span></li>
+    <li><span class="q"><span>Q2</span>Consumidor</span><div class="track"><div class="bar low" style="--v:5.5"></div></div><span class="n">5,5</span></li>
+    <li><span class="q"><span>Q3</span>Cultura</span><div class="track"><div class="bar" style="--v:6"></div></div><span class="n">6,0</span></li>
+    <li><span class="q"><span>Q4</span>Ideia</span><div class="track"><div class="bar" style="--v:7"></div></div><span class="n">7,0</span></li>
+    <li><span class="q"><span>Q5</span>Diferencial</span><div class="track"><div class="bar low" style="--v:5"></div></div><span class="n">5,0</span></li>
+    <li><span class="q"><span>Q6</span>Momento de uso</span><div class="track"><div class="bar" style="--v:7.5"></div></div><span class="n">7,5</span></li>
+    <li><span class="q"><span>Q7</span>Implementação</span><div class="track"><div class="bar" style="--v:6"></div></div><span class="n">6,0</span></li>
+    <li><span class="q"><span>Q8</span>Desafio</span><div class="track"><div class="bar low" style="--v:5.5"></div></div><span class="n">5,5</span></li>
+  </ul>
+</section>
+
+<section class="group" aria-labelledby="g-crit">
+  <div class="group-head">
+    <span class="tag crit">Críticos</span>
+    <h2 id="g-crit">Pesam mais na nota</h2>
+    <span class="count">4 problemas</span>
+  </div>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#1</span><h3>A persona muda ao longo do texto <span class="where">Q2 e Q6</span></h3></div>
+    <ul>
+      <li>Na Q2, o consumidor-alvo é quem escolhe energéticos no lugar do café.</li>
+      <li>Na Q6, Gabriela rejeita café por ser amargo e se interessa pela proteína.</li>
+      <li>São públicos diferentes. A banca percebe a falta de um alvo único.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Definir uma única persona e usá-la da Q2 à Q6.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#2</span><h3>Falta de foco em um subtema do desafio</h3></div>
+    <ul>
+      <li>O texto não declara qual dos quatro subtemas foi escolhido: Rotina e Recorrência, Cultura e Conexão, Produto e Embalagem, Acesso e Ativação.</li>
+      <li>Na prática, mistura embalagem, acesso, cultura e rotina.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Declarar um subtema principal (provavelmente Produto e Embalagem) e tratar os demais como apoio.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#3</span><h3>A embalagem, ponto central da ideia, é frágil <span class="where">Q3, Q4, Q6, Q7</span></h3></div>
+    <ul>
+      <li>Lata de plástico transparente pode ir contra a sustentabilidade que a Geração Z valoriza.</li>
+      <li>Falta checar a viabilidade técnica: proteção e validade de uma bebida com leite em embalagem transparente, e o custo.</li>
+      <li>Um café com leite é bege, então o "gatilho visual" do líquido visível é questionável.</li>
+      <li>Na Q6, as "cores diferentes" das latas não se explicam pelo conteúdo transparente.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Reconhecer o risco e oferecer uma alternativa, por exemplo uma lata de alumínio com identidade visual forte.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#4</span><h3>O ritual cultural quase não é desenvolvido <span class="where">Q3</span></h3></div>
+    <ul>
+      <li>A pergunta "Qual a cor do seu dia?" é o melhor gancho de código cultural, mas ocupa duas linhas.</li>
+      <li>Não explica por que as pessoas repetiriam o gesto nem por que postariam.</li>
+      <li>Não há referência ao framework PULSO (Loop de ritual, Símbolo social, Onda coletiva).</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Descrever o mecanismo do ritual e conectá-lo ao PULSO.</p>
+  </article>
+</section>
+
+<section class="group" aria-labelledby="g-imp">
+  <div class="group-head">
+    <span class="tag warn">Importantes</span>
+    <h2 id="g-imp">Enfraquecem a proposta</h2>
+    <span class="count">7 problemas</span>
+  </div>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#5</span><h3>Evidência fraca para o tamanho da aposta <span class="where">Q1</span></h3></div>
+    <ul>
+      <li>A pesquisa com 56 pessoas mede opinião, e o webinar 4 pede comportamento real.</li>
+      <li>A pesquisa sustenta só o hábito matinal. Preço alto, distância cultural e embalagem pouco atraente aparecem sem dados.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Acrescentar entrevistas, teste de sabor ou teste do conceito, e relatar o resultado.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#6</span><h3>Afirmações absolutas sem prova <span class="where">Q3, Q5</span></h3></div>
+    <ul>
+      <li>"Nenhuma proposta até o momento tenta agradar..." não tem mapa de concorrentes.</li>
+      <li>"Esse modelo já foi validado no mercado internacional" não traz nenhum exemplo.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Citar concorrentes e casos reais, ou suavizar a afirmação.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#7</span><h3>Falta de faixa de preço <span class="where">Q5, Q7</span></h3></div>
+    <ul>
+      <li>O preço acessível é pilar central, mas nenhum valor é apresentado nem comparado a energéticos ou cafés prontos.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Indicar uma faixa de preço e uma comparação simples.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#8</span><h3>Desafio principal mal identificado <span class="where">Q8</span></h3></div>
+    <ul>
+      <li>"Pertencimento" é um desafio de comunicação.</li>
+      <li>Os riscos reais (custo da embalagem, validade, entrada no ponto de venda) não aparecem.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Reescrever com o risco real e uma resposta concreta, como um piloto em poucos pontos de venda.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#9</span><h3>Implementação sem prazos nem indicadores <span class="where">Q7</span></h3></div>
+    <ul>
+      <li>Os passos são lógicos, mas sem cronograma, piloto, custos ou métricas de sucesso.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Incluir etapas com prazos e 2 ou 3 indicadores, por exemplo recompra e compartilhamentos.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#10</span><h3>Uso insuficiente dos frameworks da Nestlé</h3></div>
+    <ul>
+      <li>Nenhuma menção ao PULSO nem aos pilares da Geração Z (Dopamina High, Efeito Ctrl+Z, Eu) pelo nome.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Citar explicitamente esses frameworks, que são o vocabulário da banca.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#11</span><h3>Falta de frase âncora e de nome do produto <span class="where">Q4</span></h3></div>
+    <ul>
+      <li>O webinar 4 pede uma frase única com quem, resultado e solução.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Escrever a frase. Sugestão: <em>"Para jovens de 18 a 29 anos que hoje escolhem energéticos na pausa da tarde, um café gelado com leite, acessível e compartilhável, que transforme a pausa em um momento de expressão."</em></p>
+  </article>
+</section>
+
+<section class="group" aria-labelledby="g-det">
+  <div class="group-head">
+    <span class="tag note">Detalhes</span>
+    <h2 id="g-det">Ajustes pontuais</h2>
+    <span class="count">4 problemas</span>
+  </div>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#12</span><h3>Inconsistências no produto</h3></div>
+    <ul>
+      <li>O "sem açúcar" é vendido para quem prefere café forte, mas a barreira identificada é o amargor.</li>
+      <li>Chamar o energético de "industrializado" não se sustenta, já que uma lata de café também é.</li>
+      <li>O CTA aparece "no rótulo" e depois "no verso".</li>
+      <li>Responder ao CTA "com caneta" exige uma superfície escrevível, o que não está na descrição da embalagem.</li>
+    </ul>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#13</span><h3>Público amplo demais e tema sensível <span class="where">Q4</span></h3></div>
+    <ul>
+      <li>A Q4 menciona "adolescência", mas o desafio é para 18 a 29 anos.</li>
+      <li>Cafeína para menores é um tema delicado para a Nestlé.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Focar o recorte de 18 a 29 anos.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#14</span><h3>Marketing genérico e centrado em uma rede</h3></div>
+    <ul>
+      <li>"Influenciadores com publicidade sutil" é a proposta mais comum.</li>
+      <li>O texto cita só o Instagram, enquanto o webinar 3 apontou o TikTok como grande concorrente da pausa.</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Propor uma ação mais específica e ligada ao ritual da lata.</p>
+  </article>
+
+  <article class="issue">
+    <div class="issue-top"><span class="id">#15</span><h3>Nomenclatura do subtema</h3></div>
+    <ul>
+      <li>As fontes usam "Identidade e Embalagem" (webinar 2) e "Produto e Embalagem" (webinar 4).</li>
+    </ul>
+    <p class="fix"><b>Correção</b>Ao declarar o subtema, usar a nomenclatura mais recente.</p>
+  </article>
+</section>
+
+<section class="group" aria-labelledby="g-check">
+  <div class="group-head">
+    <span class="tag note">Checklist</span>
+    <h2 id="g-check">Ajustes até 16/10, às 18h</h2>
+    <span class="count progress" id="progress">0 de 13</span>
+  </div>
+  <ul class="checklist" id="checklist">
+    <li><label><input type="checkbox" id="c1"><span>Escrever a frase âncora (quem, resultado, solução)</span></label></li>
+    <li><label><input type="checkbox" id="c2"><span>Fixar uma única persona da Q2 à Q6</span></label></li>
+    <li><label><input type="checkbox" id="c3"><span>Declarar o subtema principal</span></label></li>
+    <li><label><input type="checkbox" id="c4"><span>Explicar o mecanismo do ritual (interação da lata, repetição, compartilhamento)</span></label></li>
+    <li><label><input type="checkbox" id="c5"><span>Incluir faixa de preço e comparação com energéticos e cafés prontos</span></label></li>
+    <li><label><input type="checkbox" id="c6"><span>Reconhecer o risco da embalagem e apresentar uma alternativa</span></label></li>
+    <li><label><input type="checkbox" id="c7"><span>Reescrever a Q8 com o risco real e um piloto</span></label></li>
+    <li><label><input type="checkbox" id="c8"><span>Citar o PULSO e os pilares da Geração Z</span></label></li>
+    <li><label><input type="checkbox" id="c9"><span>Corrigir as inconsistências do produto (sem açúcar, "industrializado", rótulo/verso, caneta)</span></label></li>
+    <li><label><input type="checkbox" id="c10"><span>Focar o público em 18 a 29 anos</span></label></li>
+    <li><label><input type="checkbox" id="c11"><span>Ampliar o plano de marketing além do Instagram</span></label></li>
+    <li><label><input type="checkbox" id="c12"><span>Se houver tempo, fazer dois testes simples com o público-alvo e relatar o resultado</span></label></li>
+    <li><label><input type="checkbox" id="c13"><span>Inscrição individual de todos os integrantes confirmada (equipes de 5 a 10 pessoas)</span></label></li>
+  </ul>
+</section>
+
+<section class="verdict" aria-labelledby="g-ver">
+  <div class="eyebrow">Veredito da avaliação</div>
+  <h2 id="g-ver">Você escolheria essa ideia?</h2>
+  <p class="answer">Como está, não.</p>
+  <p>O núcleo é compreensível e comercialmente plausível, mas se resume a "café gelado em lata bonita, barata e divulgada por influenciadores". Isso responde a como vender, e o desafio pede como virar obsessão cultural.</p>
+  <p>A nota sobe para perto de 8 se a equipe provar três coisas:</p>
+  <div class="proofs">
+    <span>Existe um ritual que se repete e se compartilha</span>
+    <span>O preço cabe na conta</span>
+    <span>A embalagem é viável</span>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function () {
+  var KEY = "pitch-cafe-gelado-checklist";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("#checklist input"));
+  var label = document.getElementById("progress");
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { return {}; }
+  }
+  function save() {
+    var s = {};
+    boxes.forEach(function (b) { s[b.id] = b.checked; });
+    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {}
+  }
+  function update() {
+    var n = boxes.filter(function (b) { return b.checked; }).length;
+    label.textContent = n + " de " + boxes.length;
+  }
+  var saved = load();
+  boxes.forEach(function (b) {
+    if (saved[b.id]) b.checked = true;
+    b.addEventListener("change", function () { save(); update(); });
+  });
+  update();
+})();
+</script>
+
+</body></html>
